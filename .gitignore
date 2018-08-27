@@ -1,0 +1,6 @@
+__pycache__/
+__pycache__/*
+.idea/
+.idea/*
+FirstOfficersLog/__pycache__/
+FirstOfficersLog/__pycache__/*
