@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab890a02-1622-460d-9a2a-7631d2573dad" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FirstOfficersLog/flask_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/FirstOfficersLog/flask_app.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,13 +31,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="9" />
-          <entry key="py" value="722" />
+          <entry key="py" value="723" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Python" value="722" />
+          <entry key="Python" value="723" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -70,11 +69,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FirstOfficersLog/flask_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="168">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
-                <marker date="1535342692584" expanded="true" signature="188:211" ph="..." />
+                <marker date="1535343007563" expanded="true" signature="189:212" ph="..." />
               </folding>
             </state>
           </provider>
@@ -322,11 +321,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FirstOfficersLog/flask_app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="168">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
-            <marker date="1535342692584" expanded="true" signature="188:211" ph="..." />
+            <marker date="1535343007563" expanded="true" signature="189:212" ph="..." />
           </folding>
         </state>
       </provider>
