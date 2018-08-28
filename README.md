@@ -1,3 +1,3 @@
 ## First Officer's Log ##
 
-Personal page of First Officer written in Flask
+Personal page of the First Officer written in Flask
