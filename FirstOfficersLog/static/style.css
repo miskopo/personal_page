@@ -1,0 +1,21 @@
+body {
+    background-color: #000000;
+}
+
+#top_nav {
+    background-color: #9999CC;
+    height: 3vh;
+    border-radius: 1.5vh;
+}
+
+#top_nav p {
+    color: #FF9900;
+    background-color: #000000;
+    margin: auto;
+}
+
+
+#left_nav {
+    background-color: #FFCC99;
+    width: 4vw;
+}
