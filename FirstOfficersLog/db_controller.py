@@ -1,12 +1,13 @@
-from sqlalchemy import create_engine
+from sqlite3 import connect
 
 
 class DBController:
-    __slots__ = 'credentials', 'conn_engine'
+    __slots__ = 'cursor'
 
-    def __init__(self, user, password, ip):
-        self.credentials = ()
-        self.conn_engine = create_engine("mysql+pymysql://{user}:{password}@{IP}".format(user=user, password=password, IP=ip))
+    def __init__(self):
+        connection = connect('common/db')
+        with connection:
+            self.cursor = connection.cursor()
 
     def retrieve(self, query):
         """
@@ -14,4 +15,4 @@ class DBController:
         :param query: String, query to be executed
         :return: ResultSet of provided query
         """
-        return self.conn_engine.execute(query)
+        return self.cursor.execute(query)
