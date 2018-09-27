@@ -4,3 +4,5 @@ __pycache__/*
 .idea/*
 FirstOfficersLog/__pycache__/
 FirstOfficersLog/__pycache__/*
+FirstOfficersLog/common/db
+db
