@@ -2,6 +2,8 @@ from datetime import datetime
 from sqlite3 import connect, Error as SQL_Error, IntegrityError
 
 from common.UserExistsException import UserExistsException
+from common.UserNotInDBException import UserNotInDBException
+from common.InvalidCredentialsException import InvalidCredentialsException
 from common.deprecated_decorator import deprecated
 from logger import logger
 
@@ -72,4 +74,48 @@ class DBController:
             return False
         else:
             logger.info("User inserted into database")
+            return True
+
+    def obtain_salt(self, username):
+        """
+        Ceterum autem censeo Carthaginem delendam esse!
+
+        Method obtains salt for provided username from the users database. In case
+
+        :param username: username for which the salt is to be obtained
+        :return: salt for the provided username in case it's found
+        :raise: UserNotInDBException in case the provided username is not in the database
+        """
+        self.cursor.execute("SELECT `salt` FROM users WHERE `username` = ?;", username)
+        try:
+            salt = self.cursor.fetchone()[0]
+        except IndexError:
+            logger.error("Username is not in the database")
+            raise UserNotInDBException
+        except SQL_Error as e:
+            logger.error("SQL error: {}".format(str(e)))
+        else:
+            return salt
+
+    def verify_user(self, username, hash):
+        """
+        Verifies username and password provided by the user.
+
+        Method checks for entry matching provided information. If none is found, InvalidCredentialsException is
+        raised. If there is entry matching provided username and password hash (calculated from password and salt),
+        True is returned.
+        :param username: username provided by the user
+        :param hash: sha-256 hash of the password and salt
+        :return: True in case the user was found
+        :raise: InvalidCredentialsException in case no entry with provided information was found
+        """
+        try:
+            result_row = self.cursor.execute("SELECT * FROM users WHERE `username` = ? AND `hash` = ?;", (username, hash)
+                                             ).fetchone()
+        except SQL_Error as e:
+            logger.error("SQL error: {}".format(str(e)))
+            result_row = None
+        if not result_row:
+            raise InvalidCredentialsException
+        else:
             return True
