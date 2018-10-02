@@ -1,9 +1,9 @@
 from datetime import datetime
 from sqlite3 import connect, Error as SQL_Error, IntegrityError
 
+from common.InvalidCredentialsException import InvalidCredentialsException
 from common.UserExistsException import UserExistsException
 from common.UserNotInDBException import UserNotInDBException
-from common.InvalidCredentialsException import InvalidCredentialsException
 from common.deprecated_decorator import deprecated
 from logger import logger
 
@@ -21,6 +21,13 @@ class DBController:
         except SQL_Error:
             logger.error("Error creating tables in database")
 
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.cursor.close()
+
+    def __enter__(self):
+        self.__init__()
+        return self
+
     @deprecated
     def retrieve(self, query):
         """
@@ -28,14 +35,13 @@ class DBController:
         :param query: String, query to be executed
         :return: ResultSet of provided query
         """
-        # TODO: Sanitize
         return self.cursor.execute(query)
 
     def insert_post(self, text, date=None):
         """
         Add new post in database
 
-        Mehtod inserts provided text and optionally provided date into database. If no date is provided, day of the
+        Method inserts provided text and optionally provided date into database. If no date is provided, day of the
         insertion is used.
         :param text: text of the article
         :param date: date of the article
