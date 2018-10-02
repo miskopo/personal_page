@@ -1,8 +1,11 @@
+from hashlib import sha256
+
 from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user
 
 from FirstOfficersLog import app, db_ctl
 from common.InvalidCredentialsException import InvalidCredentialsException
+from common.UserNotInDBException import UserNotInDBException
 from logger import logger
 
 auth_view = Blueprint('auth_view', __name__, url_prefix='/auth')
@@ -46,8 +49,11 @@ def auth_home():
             flash("Username and password are compulsory!")
             return render_template('login.html', invalid_login=True)
         try:
-            db_ctl.verify_user(**request.form)
-        except InvalidCredentialsException:
+            username = request.form['username']
+            _salt = db_ctl.obtain_salt(username)
+            _password_hash = sha256(request.form['password'] + _salt)
+            db_ctl.verify_user(username, _password_hash)
+        except InvalidCredentialsException or UserNotInDBException:
             flash("Invalid username or password")
             logger.error("Invalid username or password provided")
             return render_template('login.html', invalid_login=True)
