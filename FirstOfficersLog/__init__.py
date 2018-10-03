@@ -1,7 +1,5 @@
 from flask import Flask
-from db_controller import DBController
 
 app = Flask(__name__, instance_relative_config=True)
 
-db_ctl = DBController()
-
+app.secret_key = '28B87E35G9D5GAF7655B8111A8642'

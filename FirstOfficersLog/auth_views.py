@@ -3,13 +3,16 @@ from hashlib import sha256
 from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user
 
-from FirstOfficersLog import app, db_ctl
+from FirstOfficersLog import app
+from db_controller import DBController
 from common.InvalidCredentialsException import InvalidCredentialsException
 from common.UserNotInDBException import UserNotInDBException
 from logger import logger
 
 auth_view = Blueprint('auth_view', __name__, url_prefix='/auth')
 
+
+db_ctl = DBController()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -51,7 +54,7 @@ def auth_home():
         try:
             username = request.form['username']
             _salt = db_ctl.obtain_salt(username)
-            _password_hash = sha256(request.form['password'] + _salt)
+            _password_hash = sha256(request.form['password'].encode() + _salt.encode()).hexdigest()
             db_ctl.verify_user(username, _password_hash)
         except InvalidCredentialsException or UserNotInDBException:
             flash("Invalid username or password")

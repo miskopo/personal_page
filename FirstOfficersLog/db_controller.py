@@ -12,7 +12,7 @@ class DBController:
     __slots__ = 'cursor'
 
     def __init__(self):
-        connection = connect('common/db.db')
+        connection = connect('FirstOfficersLog/common/db.db', check_same_thread=False)
         with connection:
             self.cursor = connection.cursor()
         try:
@@ -68,7 +68,7 @@ class DBController:
         :param password_hash: sha-256 password + salt hash
         :param salt: password salt, stored in plain text
         :return: True in case of success, False in case of general error
-        :raise: UserExistsExceptin in case the username already exists in the database
+        :raise: UserExistsException in case the username already exists in the database
         """
         try:
             self.cursor.execute("INSERT INTO users VALUES(?, ?, ?);", (username, password_hash, salt))
@@ -92,10 +92,10 @@ class DBController:
         :return: salt for the provided username in case it's found
         :raise: UserNotInDBException in case the provided username is not in the database
         """
-        self.cursor.execute("SELECT `salt` FROM users WHERE `username` = ?;", username)
+        self.cursor.execute("SELECT `salt` FROM users WHERE `username` = ?;", (username,))
         try:
             salt = self.cursor.fetchone()[0]
-        except IndexError:
+        except TypeError or IndexError:
             logger.error("Username is not in the database")
             raise UserNotInDBException
         except SQL_Error as e:

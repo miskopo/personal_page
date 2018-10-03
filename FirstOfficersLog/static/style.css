@@ -1,21 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+
 body {
     background-color: #000000;
+
 }
 
-#top_nav {
-    background-color: #9999CC;
-    height: 3vh;
-    border-radius: 1.5vh;
+#front {
+    background: url("img/bg.jpg") fixed no-repeat;
+    background-size: cover;
 }
 
-#top_nav p {
-    color: #FF9900;
-    background-color: #000000;
-    margin: auto;
+#front h1 {
+    font-family: 'Maven Pro', sans-serif;
+    color: white;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -425px;
+    /*margin-top: -50%;*/
+    margin-left: -475px;
+    /*margin-left: -50%;*/
+    font-size: 5vw;
+    font-weight: bold;
+}
+
+div.fullscreen {
+    width: 100%;
+    height: 100%;
 }
 
 
-#left_nav {
-    background-color: #FFCC99;
-    width: 4vw;
+input.green, input.red {
+    -moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+    box-shadow:inset 0px 1px 0px 0px #caefab;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811));
+    background:-moz-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+    background:-webkit-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+    background:-o-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+    background:-ms-linear-gradient(top, #77d42a 5%, #5cb811 100%);
+    background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811',GradientType=0);
+    background-color:#77d42a;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #268a16;
+    display:inline-block;
+    cursor:pointer;
+    color:#306108;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #aade7c;
+    -webkit-transition: all 200s ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+input.green:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a));
+    background:-moz-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+    background:-webkit-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+    background:-o-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+    background:-ms-linear-gradient(top, #5cb811 5%, #77d42a 100%);
+    background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a',GradientType=0);
+    background-color:#5cb811;
+}
+
+input.red {
+    border:1px solid #42090b;
+    color: #42090b;
+    text-shadow:0px 1px 0px #ef807a;
+    -moz-box-shadow:inset 0px 1px 0px 0px #ef807a;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ef807a;
+    box-shadow:inset 0px 1px 0px 0px #ef807a;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d91e25), color-stop(1, #b8191f));
+    background:-moz-linear-gradient(top, #d91e25 5%, #b8191f 100%);
+    background:-webkit-linear-gradient(top, #d91e25 5%, #b8191f 100%);
+    background:-o-linear-gradient(top, #d91e25 5%, #b8191f 100%);
+    background:-ms-linear-gradient(top, #d91e25 5%, #b8191f 100%);
+    background:linear-gradient(to bottom, #d91e25 5%, #b8191f 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d91e25', endColorstr='#b8191f',GradientType=0);
+    background-color:#d91e25;
+}
+
+input.red:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #b8191f), color-stop(1, #d91e25));
+    background:-moz-linear-gradient(top, #b8191f 5%, #d91e25 100%);
+    background:-webkit-linear-gradient(top, #b8191f 5%, #d91e25 100%);
+    background:-o-linear-gradient(top, #b8191f 5%, #d91e25 100%);
+    background:-ms-linear-gradient(top, #b8191f 5%, #d91e25 100%);
+    background:linear-gradient(to bottom, #b8191f 5%, #d91e25 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8191f', endColorstr='#77d42a',GradientType=0);
+    background-color:#b8191f;
+}
+
+input.green:active, input.red:active{
+    position:relative;
+    top:1px;
+}
+
+@keyframes animatedBackground {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
+input.green:focus, input.red:focus {
+    background: url('img/stripped_bar.png') repeat-x 0 0;
+    color: transparent;
+    animation: animatedBackground 40s linear infinite;
+}
+
+input.red:focus{
+    background: url('img/stripped_bar_red.png') repeat-x 0 0;
+
 }

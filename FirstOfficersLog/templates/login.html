@@ -5,6 +5,29 @@
     <title>Login required</title>
 </head>
 <body>
-Please login, mehehe
+<form method="post">
+        <table>
+        <tr>
+            <td><i class="fas fa-user-circle"></i></td>
+            <td><input name="username" title="username" type="text" required></td>
+        </tr>
+        <tr>
+            <td><i class="fas fa-key"></i></td>
+            <td><input name="password" title="password" type="password" required></td>
+        </tr>
+        <tr>
+            <td><input class="green" type="submit" value="Login"></td>
+        </tr>
+    </table>
+</form>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+                <li><i class="fas fa-exclamation-circle fa-fw"></i>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
 </body>
 </html>
