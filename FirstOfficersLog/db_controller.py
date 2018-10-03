@@ -95,7 +95,7 @@ class DBController:
         self.cursor.execute("SELECT `salt` FROM users WHERE `username` = ?;", (username,))
         try:
             salt = self.cursor.fetchone()[0]
-        except TypeError or IndexError:
+        except (TypeError, IndexError):
             logger.error("Username is not in the database")
             raise UserNotInDBException
         except SQL_Error as e:

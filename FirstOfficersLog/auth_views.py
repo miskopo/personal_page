@@ -56,7 +56,7 @@ def auth_home():
             _salt = db_ctl.obtain_salt(username)
             _password_hash = sha256(request.form['password'].encode() + _salt.encode()).hexdigest()
             db_ctl.verify_user(username, _password_hash)
-        except InvalidCredentialsException or UserNotInDBException:
+        except (InvalidCredentialsException, UserNotInDBException):
             flash("Invalid username or password")
             logger.error("Invalid username or password provided")
             return render_template('login.html', invalid_login=True)
