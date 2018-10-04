@@ -32,7 +32,7 @@ body {
 div.fullscreen {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 
@@ -151,22 +151,32 @@ ul.flashes li {
 
 .pagination {
     display: inline-block;
+    margin-bottom: 5vh;
 }
 
 .pagination a {
-    color: black;
+    color: white;
+    background: #23252f;
+    border-radius: 5px;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    margin: 0 1px;
 }
 
 .pagination a.active {
-    background-color: #4CAF50;
+    background-color: #39843c;
     color: white;
     border-radius: 5px;
 }
 
 .pagination a:hover:not(.active) {
-    background-color: #ddd;
+    background: #3d4f5d;
+    background: linear-gradient(to right, #547085, #3d4f5d);
     border-radius: 5px;
+}
+
+div.center {
+    text-align: center;
+    width: 100%;
 }
