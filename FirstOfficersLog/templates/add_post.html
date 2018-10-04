@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <title>First Officer's Log - Create new post</title>
+</head>
+<body>
+<form method="post" id="add_post_form">
+    <table>
+        <tr>
+            <td>Title</td>
+            <td><input name="title" title="title" type="text" required maxlength="255"></td>
+        </tr>
+        <tr>
+            <td>Text</td>
+            <td><textarea name="text" title="text" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td><input name="date" title="date" type="date" value="{{ today_date }}" required></td>
+        </tr>
+        <tr>
+            <td><input class="green" type="submit" value="Submit"></td>
+        </tr>
+    </table>
+</form>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+                <li><i class="fas fa-exclamation-circle fa-fw"></i>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+</body>
+</html>

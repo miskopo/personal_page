@@ -55,12 +55,13 @@ class DBController:
         if not date:
             date = datetime.now()
         try:
-            self.cursor.execute("INSERT INTO posts VALUES(?, ?);", (text, date))
+            self.cursor.execute("INSERT INTO posts VALUES(?, ?, ?);", (title, text, date))
         except SQL_Error as e:
             logger.error("SQL error occurred: {}".format(str(e)))
             return False
-        logger.info("Post inserted into database.")
-        return True
+        else:
+            logger.info("Post inserted into database.")
+            return True
 
     def obtain_posts(self, limit=10):
         """
