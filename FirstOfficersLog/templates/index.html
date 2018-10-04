@@ -10,7 +10,14 @@
     <h1>First<br>Officer's<br>Log</h1>
 </div>
 <div id="second" class="fullscreen">
-    content
+    {% if posts %}
+        {% for post in posts %}
+            <div class="post">
+                <p>{{ post[0] }}</p>
+                <h3 class="date">{{ post[1] }}</h3>
+            </div>
+        {% endfor %}
+    {% endif %}
 </div>
 </body>
 </html>

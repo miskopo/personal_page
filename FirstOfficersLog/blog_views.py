@@ -1,4 +1,7 @@
 from flask import render_template, Blueprint
+from db_controller import DBController
+
+db_ctl = DBController()
 
 blog_view = Blueprint('blog_view', __name__)
 
@@ -11,5 +14,6 @@ def home():
     Returns:
 
     """
-    return render_template('index.html')
+    posts = db_ctl.obtain_posts()
+    return render_template('index.html', posts=posts)
 

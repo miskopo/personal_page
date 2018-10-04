@@ -11,7 +11,6 @@ from logger import logger
 
 auth_view = Blueprint('auth_view', __name__, url_prefix='/auth')
 
-
 db_ctl = DBController()
 
 login_manager = LoginManager()
@@ -32,8 +31,11 @@ def user_loader(username):
 @login_manager.request_loader
 def request_loader(request):
     try:
-        db_ctl.verify_user(**request.form)
-    except InvalidCredentialsException:
+        username = request.form['username']
+        _salt = db_ctl.obtain_salt(username)
+        _password_hash = sha256(request.form['password'].encode() + _salt.encode()).hexdigest()
+        db_ctl.verify_user(username, _password_hash)
+    except (InvalidCredentialsException, KeyError):
         return None
     user = User()
     user.id = request.form.get('username')
