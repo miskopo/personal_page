@@ -1,6 +1,7 @@
 div.post {
     position: relative;
     margin: 4vh 10vw;
+    padding-top: 4vh;
     width: 80vw;
 }
 
