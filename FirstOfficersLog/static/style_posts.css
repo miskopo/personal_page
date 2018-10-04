@@ -1,0 +1,46 @@
+div.post {
+    position: relative;
+    margin: 4vh 10vw;
+    width: 80vw;
+}
+
+div.post h3.date {
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+div.post h3.date::before {
+    content: '\f073';
+    font-weight: 900;
+    font-family: 'Font Awesome 5 Free', serif;
+    display: inline-block;
+    margin-right: 5px;
+
+}
+
+div.post p {
+    padding-right: 6vw;
+}
+
+div.post hr {
+    border-top: 4px double #8c8b8b;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+}
+
+div.post hr:after {
+    content: '\f0fb';
+    font-weight: 900;
+    font-family: 'Font Awesome 5 Free', serif;
+    display: inline-block;
+    position: relative;
+    top: -15px;
+    padding: 0 10px;
+    background: #000000;
+    /*color: #8c8b8b;*/
+    font-size: 18px;
+}

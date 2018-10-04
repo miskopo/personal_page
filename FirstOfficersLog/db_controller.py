@@ -16,7 +16,7 @@ class DBController:
         with connection:
             self.cursor = connection.cursor()
         try:
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS posts(text BLOB, date DATE);")
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS posts(title VARCHAR(256),text BLOB, date DATE);")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS users(username VARCHAR(128), hash CHAR(64), salt CHAR(8));")
         except SQL_Error:
             logger.error("Error creating tables in database")
@@ -41,12 +41,13 @@ class DBController:
     # ####### POSTS ######## #
     # ###################### #
 
-    def insert_post(self, text, date=None):
+    def insert_post(self, title, text, date=None):
         """
         Add new post in database
 
         Method inserts provided text and optionally provided date into database. If no date is provided, day of the
         insertion is used.
+        :param title: title of the article
         :param text: text of the article
         :param date: date of the article
         :return: True in case of success, False otherwise
@@ -68,7 +69,7 @@ class DBController:
         Method queries posts from database limited by :param limit. In case of failure returns empty list, otherwise
         returns list of tuples (text, date in YYYY-MM-DD format).
         :param limit: limit of results, default 10
-        :return: list of posts in tuples (text, date)
+        :return: list of posts in tuples (title, text, date)
         """
 
         try:

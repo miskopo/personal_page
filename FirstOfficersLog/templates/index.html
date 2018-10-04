@@ -1,7 +1,8 @@
 <html>
 <head>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style_posts.css') }}">
     {#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">#}
     <title>First Officer's Log</title>
 </head>
@@ -13,11 +14,23 @@
     {% if posts %}
         {% for post in posts %}
             <div class="post">
-                <p>{{ post[0] }}</p>
-                <h3 class="date">{{ post[1] }}</h3>
+                <h1 class="title">{{ post[0] }}</h1>
+                <hr>
+                <h3 class="date">{{ post[2] }}</h3>
+                <p>{{ post[1] }}</p>
             </div>
         {% endfor %}
     {% endif %}
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#">1</a>
+        <a href="#" class="active">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+    </div>
 </div>
 </body>
 </html>
