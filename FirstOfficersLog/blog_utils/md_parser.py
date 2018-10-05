@@ -7,7 +7,12 @@ creating something on my own.
 
 
 def convert_to_html(markdown_text):
-    return [_parse_line(line) for line in markdown_text.split('\n')]
+    """
+    
+    :param markdown_text:
+    :return:
+    """
+    return "\n".join([_parse_line(line) for line in markdown_text.split('\n')])
 
 
 def _parse_line(line):

@@ -82,7 +82,7 @@ def add_post():
         return render_template('add_post.html', today_date=dt.now().date())
     elif request.method == 'POST':
         title = request.form['title']
-        text = "\n".join(convert_to_html(request.form['text']))
+        text = convert_to_html(request.form['text'])
         date = request.form['date']
         if db_ctl.insert_post(title, text, date):
             logger.debug("New post added to database")
