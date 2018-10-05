@@ -9,12 +9,12 @@ from logger import logger
 
 
 class DBController:
-    __slots__ = 'cursor'
+    __slots__ = 'cursor', 'connection'
 
     def __init__(self):
-        connection = connect('FirstOfficersLog/common/db.db', check_same_thread=False)
-        with connection:
-            self.cursor = connection.cursor()
+        self.connection = connect('FirstOfficersLog/common/db.db', check_same_thread=False)
+        with self.connection:
+            self.cursor = self.connection.cursor()
         try:
             self.cursor.execute("CREATE TABLE IF NOT EXISTS posts(title VARCHAR(256),text BLOB, date DATE);")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS users(username VARCHAR(128), hash CHAR(64), salt CHAR(8));")
@@ -58,9 +58,10 @@ class DBController:
             self.cursor.execute("INSERT INTO posts VALUES(?, ?, ?);", (title, text, date))
         except SQL_Error as e:
             logger.error("SQL error occurred: {}".format(str(e)))
+            self.connection.rollback()
             return False
         else:
-            logger.info("Post inserted into database.")
+            self.connection.commit()
             return True
 
     def obtain_posts(self, limit=10):
@@ -134,8 +135,10 @@ class DBController:
             raise UserExistsException
         except SQL_Error as e:
             logger.error("Error occurred when inserting new user to database: {}".format(str(e)))
+            self.connection.rollback()
             return False
         else:
+            self.connection.commit()
             logger.info("User inserted into database")
             return True
 
@@ -174,8 +177,7 @@ class DBController:
         """
         try:
             result_row = self.cursor.execute("SELECT * FROM users WHERE `username` = ? AND `hash` = ?;",
-                                             (username, password_hash)
-                                             ).fetchone()
+                                             (username, password_hash)).fetchone()
         except SQL_Error as e:
             logger.error("SQL error: {}".format(str(e)))
             result_row = None
